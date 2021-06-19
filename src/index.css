@@ -6,6 +6,10 @@
   font-family: "Quicksand";
   color: #333;
 }
+
+.App {
+  height: 100vh;
+}
 .navbar {
   padding: 20px;
   display: flex;

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const useFetch = (url) => {
+    let urlType = url.split("/").pop()
+    console.log("urlType", urlType)
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -17,7 +19,18 @@ const useFetch = (url) => {
                 return res.json();
             })
             .then(data => {
-                data.sort((a,b) => a.name.localeCompare(b.name))
+                console.log("data abc", data)
+                if(urlType==="people"){
+                    console.log("print here")
+                    data.sort((a,b)=> {
+                        if(a.name>b.name)
+                        return 1;
+                        else{
+                            return -1;
+                        }
+                    })
+                }
+                // data.sort((a,b) => Number(a.id)- Number(b.id))
                 setData(data);
                 setIsPending(false);
                 setError(null);
